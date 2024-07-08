@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" styleClass="MainBackGround" stylesheets="@../CSSStyle/Account.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.BankApp.demo.Controller.UserAccount.AccountController">
+   <children>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" styleClass="SidedBar" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Text layoutX="273.0" layoutY="56.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Settings and Security" wrappingWidth="198.08917236328125">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Text>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="213.0" layoutY="100.0" prefHeight="200.0" prefWidth="200.0" styleClass="BelowBar" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="100.0">
+         <children>
+            <Text layoutX="306.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="My Profile">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Text>
+            <Button layoutX="6.0" layoutY="11.0" mnemonicParsing="false" onAction="#goBack" prefHeight="26.0" prefWidth="54.0" styleClass="BackButton" />
+            <FontAwesomeIconView disable="true" glyphName="ARROW_LEFT" layoutX="14.0" layoutY="30.0" size="15" text="" />
+         </children>
+      </AnchorPane>
+      <FlowPane alignment="BOTTOM_CENTER" layoutX="137.0" layoutY="350.0" prefHeight="250.0" prefWidth="302.0" styleClass="FlowPane" AnchorPane.leftAnchor="0.0">
+         <children>
+            <Button contentDisplay="TOP" mnemonicParsing="false" styleClass="SettingButton" text="Change Password" textAlignment="RIGHT">
+               <graphic>
+                  <FontAwesomeIconView glyphName="LOCK" wrappingWidth="23.199952125549316" />
+               </graphic>
+               <FlowPane.margin>
+                  <Insets />
+               </FlowPane.margin>
+            </Button>
+            <Button contentDisplay="TOP" mnemonicParsing="false" styleClass="SettingButton" text="Forget Password?">
+               <graphic>
+                  <FontAwesomeIconView glyphName="QUESTION" size="15" wrappingWidth="25.5999755859375" />
+               </graphic>
+            </Button>
+            <Button contentDisplay="TOP" layoutX="10.0" layoutY="65.0" mnemonicParsing="false" styleClass="SettingButton" text="Create Pin">
+               <graphic>
+                  <FontAwesomeIconView glyphName="PLUS" size="15" text="" wrappingWidth="20.628523588180542" />
+               </graphic>
+            </Button>
+            <Button alignment="CENTER" contentDisplay="TOP" layoutX="10.0" layoutY="65.0" mnemonicParsing="false" styleClass="SettingButton" text="Forget Pin?">
+               <graphic>
+                  <FontAwesomeIconView glyphName="SEARCH" wrappingWidth="12.800048828125" />
+               </graphic>
+            </Button>
+         </children>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </FlowPane>
+      <Text fx:id="fullName" layoutX="14.0" layoutY="180.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="userInfor" text="Full Name: " wrappingWidth="682.8891296386716" />
+      <Text fx:id="userName" layoutX="14.0" layoutY="209.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="userInfor" text="User name:" wrappingWidth="682.8891296386718" />
+      <Text fx:id="chequingInfor" layoutX="14.0" layoutY="240.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="userInfor" text="Chequing: " wrappingWidth="682.8891296386718" />
+      <Text fx:id="phoneNumber" layoutX="14.0" layoutY="270.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="userInfor" text="Phone Number:" wrappingWidth="682.8891296386718" />
+      <Text fx:id="pinInfor" layoutX="14.0" layoutY="300.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="userInfor" text="Pin:" wrappingWidth="682.8891296386718" />
+      <Text fx:id="gmailInfor" layoutX="14.0" layoutY="330.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="userInfor" text="Gmail: " wrappingWidth="682.8891296386718" />
+   </children>
+</AnchorPane>

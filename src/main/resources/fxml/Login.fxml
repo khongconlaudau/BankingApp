@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.RadialGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.text.TextFlow?>
+
+<AnchorPane prefHeight="600.0" prefWidth="800.0" styleClass="Container" stylesheets="@../CSSStyle/LoginStyle.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.BankApp.demo.Controller.Loggin.LoginController">
+   <children>
+      <VBox alignment="CENTER" layoutX="-12.0" prefHeight="600.0" prefWidth="270.0" styleClass="Container_Vbox" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-12.0" AnchorPane.topAnchor="0.0">
+
+         <children>
+            <FontAwesomeIconView glyphName="BANK" size="30" styleClass="Container_FontAwe">
+               <VBox.margin>
+                  <Insets bottom="2.0" right="2.0" top="2.0" />
+               </VBox.margin></FontAwesomeIconView>
+            <Label styleClass="Container_Label" text="New Here?" textFill="#363333">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <padding>
+                  <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+               </padding></Label>
+            <TextFlow textAlignment="CENTER">
+               <children>
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="Container_Text" text="Sign up and discover a great amount of new opportunities!" wrappingWidth="267.13714599609375" x="2.0" y="2.0" />
+               </children>
+               <padding>
+                  <Insets left="12.0" />
+               </padding>
+            </TextFlow>
+            <Button fx:id="signUpButton" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="5.0" mnemonicParsing="false" onAction="#signUp" styleClass="Container_Button" text="Sign Up" wrapText="true">
+               <VBox.margin>
+                  <Insets top="20.0" />
+               </VBox.margin>
+               <textFill>
+                  <RadialGradient centerX="0.5" centerY="0.5265151442903461" radius="0.5">
+                     <stops>
+                        <Stop>
+                           <color>
+                              <Color red="0.031578946858644485" green="0.030380116775631905" blue="0.026783626526594162" />
+                           </color>
+                        </Stop>
+                        <Stop offset="0.09512195121951221">
+                           <color>
+                              <Color red="0.15000000596046448" green="0.02250000089406967" blue="0.02250000089406967" />
+                           </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                           <color>
+                              <Color red="1.0" green="1.0" blue="1.0" />
+                           </color>
+                        </Stop>
+                     </stops>
+                  </RadialGradient>
+               </textFill>
+            </Button>
+
+         </children>
+         <padding>
+            <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+         </padding>
+      </VBox>
+      <VBox alignment="CENTER" layoutX="254.0" layoutY="121.0" prefHeight="400.0" prefWidth="520.0" AnchorPane.bottomAnchor="79.0" AnchorPane.rightAnchor="26.0">
+         <children>
+            <Text fontSmoothingType="LCD" lineSpacing="3.0" opacity="0.82" strokeLineCap="ROUND" strokeType="OUTSIDE" strokeWidth="2.0" text="Login to Your Account">
+               <font>
+                  <Font name="System Bold" size="35.0" />
+               </font>
+               <stroke>
+                  <LinearGradient endX="0.34848478346159967" endY="0.5416666973720897" startX="1.0" startY="1.0">
+                     <stops>
+                        <Stop>
+                           <color>
+                              <Color />
+                           </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                           <color>
+                              <Color red="1.0" green="1.0" blue="1.0" />
+                           </color>
+                        </Stop>
+                     </stops>
+                  </LinearGradient>
+               </stroke>
+            </Text>
+            <Line endX="100.0" startX="-203.7890625" startY="9.930134183377959E-6" strokeWidth="0.2" />
+            <TextField fx:id="userName" cache="true" depthTest="DISABLE" prefHeight="30.0" prefWidth="300.0" promptText="User name" styleClass="Container_TextField">
+               <VBox.margin>
+                  <Insets bottom="10.0" left="125.0" right="125.0" top="30.0" />
+               </VBox.margin>
+               <cursor>
+                  <Cursor fx:constant="DEFAULT" />
+               </cursor>
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </TextField>
+            <AnchorPane prefHeight="48.0" prefWidth="520.0">
+               <children>
+                  <FontAwesomeIconView glyphName="EYE" layoutX="396.0" layoutY="21.0" text="" />
+                  <ToggleButton fx:id="showButton" layoutX="373.0" layoutY="3.0" minWidth="46.0" mnemonicParsing="false" onAction="#show" prefHeight="30.0" prefWidth="60.0" styleClass="Container_TextField" />
+                  <TextField fx:id="passwordTextField" disable="true" layoutX="122.0" layoutY="3.0" onAction="#show" prefHeight="20.0" prefWidth="250.0" promptText="Password" styleClass="Container_TextField">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </TextField>
+                  <PasswordField fx:id="passwordField" layoutX="122.0" layoutY="3.0" prefHeight="26.0" prefWidth="250.0" promptText="Password" styleClass="Container_TextField">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </PasswordField>
+               </children>
+               <VBox.margin>
+                  <Insets bottom="25.0" />
+               </VBox.margin>
+            </AnchorPane>
+            <ToggleButton mnemonicParsing="false" onAction="#Login" prefHeight="30.0" prefWidth="129.0" styleClass="Container_Vbox" text="Login">
+               <font>
+                  <Font size="15.0" />
+               </font>
+               <effect>
+                  <DropShadow />
+               </effect>
+            </ToggleButton>
+            <Label fx:id="msgLabel" disable="true" styleClass="MessageLabel" />
+         </children>
+      </VBox>
+      <Text fill="GREY" layoutX="689.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="VAN Bank">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Text>
+      <FontAwesomeIconView glyphName="USERS" layoutX="775.0" layoutY="21.0" size="20" />
+   </children>
+   <padding>
+      <Insets right="2.0" />
+   </padding>
+</AnchorPane>

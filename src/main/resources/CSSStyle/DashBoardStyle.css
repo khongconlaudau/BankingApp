@@ -1,0 +1,87 @@
+/*
+  Dashboard AnchorPane
+ */
+.Dashboard {
+    -fx-pref-width: 1400;
+    -fx-pref-height: 750;
+    -fx-background-color: rgba(237, 233, 233, 0.89);
+}
+
+
+/*
+   Sided Frame
+ */
+.sidedVbox {
+    -fx-background-color: #00c2fd;
+}
+
+.menuVbox {
+    -fx-pref-width: 145;
+    -fx-background-color: White;
+    -fx-padding: 70 0 0 0;
+    -fx-spacing: 20;
+}
+
+.menuVBox_HBox {
+    -fx-pref-height: 30;
+}
+
+.Button {
+    -fx-alignment: left;
+    -fx-background-color: white;
+    -fx-border-color: white;
+    -fx-border-style: none;
+    -fx-pref-width: 145;
+    -fx-pref-height: 30;
+    -fx-text-fill: Black;
+    -fx-font-size: 13;
+    -fx-font-family: Verdana;
+}
+
+/*
+   HBox in the main menu
+   and the atributes
+ */
+.HBox_Container {
+    -fx-spacing: 20;
+    -fx-padding: 10 0 10 20;
+    -fx-pref-width: 1100;
+    -fx-pref-height: 260;
+}
+
+.HBox_Container_Vbox {
+    -fx-pref-width: 272;
+    -fx-pref-height: 239;
+    -fx-background-color: White;
+    -fx-background-radius: 10px;
+    -fx-spacing: 20;
+}
+
+ /*
+ Vbox 3 where card number is displayed
+  */
+.AnchorPane{
+    -fx-pref-width:250 ;
+    -fx-pref-height:111 ;
+    -fx-background-color: white;
+    -fx-alignment: center;
+}
+.Card {
+    -fx-pref-width: 238;
+    -fx-pref-height: 111;
+    -fx-background-radius: 10px ;
+    -fx-background-color: #0681f8;
+    -fx-padding: 0 10 0 10;
+}
+
+/*
+        Main AnchorPane where bar chart is displayed
+ */
+
+.AnchorPaneMain{
+    -fx-pref-width: 990;
+    -fx-pref-height: 470;
+    -fx-background-color: white;
+    -fx-background-radius: 10px;
+}
+

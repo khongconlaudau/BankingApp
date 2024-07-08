@@ -1,0 +1,68 @@
+/*
+    Main back ground of the Scene Account
+*/
+.MainBackGround {
+    -fx-pref-width: 700;
+    -fx-pref-height: 600 ;
+    -fx-background-color: #f4f4f4;
+}
+
+/*
+   the sided bar on the Top for the decor
+*/
+.SidedBar {
+    -fx-pref-width: 700;
+    -fx-pref-height: 100;
+    -fx-background-color: #00c2fd;
+    -fx-alignment: CENTER;
+}
+
+/*
+    The bar below the sided bar and contain backButton
+*/
+.BelowBar {
+    -fx-pref-width: 700;
+    -fx-pref-height: 50;
+    -fx-background-color: lightgrey;
+    -fx-alignment: Center;
+}
+
+/*
+   Button to go back to the DashBoard Scene
+*/
+.BackButton {
+    -fx-pref-width: 40;
+    -fx-pref-height: 20;
+    -fx-background-color: lightgrey ;
+}
+
+/*
+    FlowPane at the bottom of the main back ground
+*/
+.FlowPane {
+    -fx-pref-width: 700;
+    -fx-pref-height: 250;
+    -fx-vgap: 5px;
+}
+
+/*
+    Button inside FlowPane (Setting Button)
+*/
+.SettingButton {
+    -fx-pref-width: 700;
+    -fx-pref-height: 45;
+    -fx-background-color: white;
+    -fx-alignment: Center Left;
+
+}
+
+/*
+    Users Information Display
+*/
+.userInfor {
+    -fx-background-color: white;
+    -fx-font-size: 15;
+    -fx-padding: 5px;
+}
+
+

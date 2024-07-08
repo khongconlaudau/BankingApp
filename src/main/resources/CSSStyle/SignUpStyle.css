@@ -1,0 +1,44 @@
+.Container {
+    -fx-background-color: rgba(128, 128, 128, 0.27);
+}
+
+.Container_Hbox {
+    -fx-background-color:  #00c2fd;
+    -fx-alignment: Top_left;
+}
+
+.Container_Vbox{
+    -fx-padding: 20;
+    -fx-spacing: 3;
+}
+.Container_Text {
+    -fx-text-fill: #9e9a9a;
+    -fx-font-size: 15;
+    -fx-fill: #9e9a9a;
+    -fx-padding: 0 0 0 10px; ;
+}
+
+.TextField {
+    -fx-pref-width: 160;
+    -fx-pref-height: 24;
+    -fx-effect: DropShadow(three-pass-box, #766e6e,3,0,0,3);
+    -fx-background-radius: 5px;
+    -fx-border-width: 2px;
+
+}
+
+.Label {
+    -fx-background-color: #8e8d8d;
+    -fx-pref-height: 25.6;
+    -fx-pref-width: 296.8;
+    -fx-background-radius: 5px;
+}
+
+.Container_HomeBackLabel {
+    -fx-background-color: rgba(228, 130, 17, 0.82);
+    -fx-text-fill: black;
+}
+
+.MessageLabel {
+    -fx-text-fill: Red;
+}

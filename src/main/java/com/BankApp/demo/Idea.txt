@@ -1,0 +1,8 @@
+Account will contain creating Pin #, Changing passwd, Forgetting passwd or PinNum
+
+
+
+Not done yet
+1. Transfer to account of the receiver
+2. check if Pin is true and valid
+3. Last Name and First name in Register need to solve for input a digit

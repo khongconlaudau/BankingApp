@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.AreaChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.chart.StackedBarChart?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.Reflection?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane opacity="0.58" styleClass="Dashboard" stylesheets="@../CSSStyle/DashBoardStyle.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.BankApp.demo.Controller.Dashboard.DashboardController">
+    <children>
+        <VBox prefHeight="750.0" prefWidth="100.0" styleClass="sidedVbox" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="1300.0" AnchorPane.topAnchor="0.0" />
+        <VBox layoutX="580.0" layoutY="107.0" prefHeight="200.0" prefWidth="100.0" styleClass="sidedVbox" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="1300.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+        <VBox layoutX="100.0" layoutY="35.0" prefHeight="750.0" prefWidth="134.0" styleClass="menuVbox" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <children>
+                <HBox fillHeight="false" prefHeight="100.0" prefWidth="200.0" styleClass="menuVBox_HBox">
+                    <children>
+                        <FontAwesomeIconView glyphName="BRAILLE" size="18">
+                            <HBox.margin>
+                                <Insets left="5.0" top="7.0" />
+                            </HBox.margin>
+                        </FontAwesomeIconView>
+                        <Button mnemonicParsing="false" prefHeight="32.0" prefWidth="135.0" styleClass="Button" text="Dashboard">
+                            <HBox.margin>
+                                <Insets left="10.0" />
+                            </HBox.margin>
+                        </Button>
+                    </children>
+                </HBox>
+                <HBox fillHeight="false" layoutX="10.0" layoutY="80.0" prefHeight="100.0" prefWidth="200.0" styleClass="menuVBox_HBox">
+                    <children>
+                        <FontAwesomeIconView glyphName="DOLLAR" size="18">
+                            <HBox.margin>
+                                <Insets left="5.0" top="6.0" />
+                            </HBox.margin>
+                        </FontAwesomeIconView>
+                        <Button mnemonicParsing="false" onAction="#switchToSavingAccount" prefHeight="32.0" prefWidth="173.0" styleClass="Button" text="Saving Account">
+                            <HBox.margin>
+                                <Insets left="10.0" />
+                            </HBox.margin>
+                        </Button>
+                    </children>
+                </HBox>
+                <HBox fillHeight="false" layoutX="10.0" layoutY="132.0" prefHeight="100.0" prefWidth="200.0" styleClass="menuVBox_HBox">
+                    <children>
+                        <FontAwesomeIconView glyphName="PAPER_PLANE" size="18">
+                            <HBox.margin>
+                                <Insets left="5.0" top="6.0" />
+                            </HBox.margin>
+                        </FontAwesomeIconView>
+                        <Button mnemonicParsing="false" onAction="#switchToSendMoney" prefHeight="32.0" prefWidth="173.0" styleClass="Button" text="Send Money">
+                            <HBox.margin>
+                                <Insets left="10.0" />
+                            </HBox.margin>
+                        </Button>
+                    </children>
+                </HBox>
+                <HBox fillHeight="false" layoutX="10.0" layoutY="184.0" prefHeight="100.0" prefWidth="200.0" styleClass="menuVBox_HBox">
+                    <children>
+                        <FontAwesomeIconView glyphName="MONEY" size="18" text="">
+                            <HBox.margin>
+                                <Insets left="5.0" top="6.0" />
+                            </HBox.margin>
+                        </FontAwesomeIconView>
+                        <Button mnemonicParsing="false" onAction="#switchToTransactions" prefHeight="32.0" prefWidth="173.0" styleClass="Button" text="Transactions">
+                            <HBox.margin>
+                                <Insets left="10.0" />
+                            </HBox.margin>
+                        </Button>
+                    </children>
+                </HBox>
+                <HBox fillHeight="false" layoutX="10.0" layoutY="236.0" prefHeight="100.0" prefWidth="200.0" styleClass="menuVBox_HBox">
+                    <children>
+                        <FontAwesomeIconView glyphName="USER" size="18">
+                            <HBox.margin>
+                                <Insets left="5.0" top="6.0" />
+                            </HBox.margin>
+                        </FontAwesomeIconView>
+                        <Button mnemonicParsing="false" onAction="#switchToAccount" prefHeight="32.0" prefWidth="173.0" styleClass="Button" text="Account">
+                            <HBox.margin>
+                                <Insets left="10.0" />
+                            </HBox.margin>
+                        </Button>
+                    </children>
+                </HBox>
+            </children></VBox>
+        <HBox layoutX="262.0" prefHeight="100.0" prefWidth="1054.0" styleClass="HBox_Container" AnchorPane.topAnchor="0.0">
+            <children>
+                <VBox prefHeight="239.0" prefWidth="272.0" styleClass="HBox_Container_Vbox">
+               <children>
+                  <AreaChart fx:id="areaChart" styleClass="HBox_Container_Vbox" title="Expenses">
+                    <xAxis>
+                      <CategoryAxis side="BOTTOM" />
+                    </xAxis>
+                    <yAxis>
+                      <NumberAxis side="LEFT" />
+                    </yAxis>
+                  </AreaChart>
+               </children>
+                </VBox>
+                <VBox alignment="CENTER" prefHeight="239.0" prefWidth="272.0" styleClass="HBox_Container_Vbox">
+               <children>
+                  <ImageView fitHeight="229.0" fitWidth="258.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../bankimg.jpg" />
+                     </image>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </ImageView>
+               </children></VBox>
+                <VBox prefHeight="239.0" prefWidth="272.0" styleClass="HBox_Container_Vbox">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Your cards">
+                     <font>
+                        <Font name="System Bold Italic" size="15.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </Text>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0" styleClass="AnchorPane">
+                     <children>
+                        <Label prefHeight="111.0" prefWidth="238.0" styleClass="Card" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
+                           <effect>
+                              <Reflection />
+                           </effect></Label>
+                        <Text fill="WHITE" layoutX="177.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="3.0" text="DEBIT" underline="true">
+                           <font>
+                              <Font name="Verdana Bold Italic" size="18.0" />
+                           </font>
+                        </Text>
+                        <Text fill="WHITE" layoutX="22.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Limit">
+                           <font>
+                              <Font size="13.0" />
+                           </font>
+                        </Text>
+                        <Text fill="WHITE" layoutX="22.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\$ " />
+                        <Text fx:id="amount" fill="WHITE" layoutX="32.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="1000">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                        </Text>
+                        <Text fill="WHITE" layoutX="21.0" layoutY="84.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name on card">
+                           <font>
+                              <Font size="13.0" />
+                           </font>
+                        </Text>
+                        <Text fx:id="nameOnCard" fill="WHITE" layoutX="21.0" layoutY="102.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Duc Manh Van">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                        </Text>
+                        <Text fill="WHITE" layoutX="189.0" layoutY="83.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Expires">
+                           <font>
+                              <Font size="13.0" />
+                           </font>
+                        </Text>
+                        <Text fill="WHITE" layoutX="191.0" layoutY="100.0" strokeType="OUTSIDE" strokeWidth="0.0" text="05/25">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </AnchorPane>
+               </children></VBox>
+                <VBox prefHeight="239.0" prefWidth="272.0" styleClass="HBox_Container_Vbox" />
+            </children>
+        </HBox>
+      <AnchorPane layoutX="286.0" layoutY="279.0" prefHeight="470.0" prefWidth="990.0" styleClass="AnchorPaneMain">
+         <children>
+            <Text layoutX="782.0" layoutY="90.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Expenses">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Text>
+            <Text layoutX="937.0" layoutY="88.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\$ ">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Text>
+            <Circle fill="DODGERBLUE" layoutX="766.0" layoutY="84.0" radius="4.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle fill="DODGERBLUE" layoutX="766.0" layoutY="118.0" radius="4.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle fill="DODGERBLUE" layoutX="766.0" layoutY="138.0" radius="4.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle fill="DODGERBLUE" layoutX="766.0" layoutY="161.0" radius="4.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle fill="DODGERBLUE" layoutX="766.0" layoutY="183.0" radius="4.0" stroke="BLACK" strokeType="INSIDE" />
+            <AnchorPane layoutX="-1.0" layoutY="-1.0" prefHeight="512.0" prefWidth="1278.0" styleClass="AnchorPaneMain">
+               <children>
+                  <Text layoutX="22.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Account Balance">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                  </Text>
+                  <StackedBarChart fx:id="stackedBarChart" layoutY="63.0" prefHeight="239.0" prefWidth="755.0">
+                     <xAxis>
+                        <CategoryAxis side="BOTTOM" />
+                     </xAxis>
+                     <yAxis>
+                        <NumberAxis prefWidth="0.0" side="LEFT" />
+                     </yAxis>
+                     <effect>
+                        <Reflection />
+                     </effect>
+                  </StackedBarChart>
+                  <Text layoutX="782.0" layoutY="90.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Expenses">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Text>
+                  <Text layoutX="851.0" layoutY="349.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="134.8245849609375">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Text>
+                  <Circle fill="DODGERBLUE" layoutX="766.0" layoutY="84.0" radius="4.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Circle fill="WHITE" layoutX="766.0" layoutY="111.0" radius="4.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Circle fill="#ffca1f" layoutX="766.0" layoutY="137.0" radius="4.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Circle fill="DODGERBLUE" layoutX="766.0" layoutY="161.0" radius="4.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Circle fill="#ff1fdd" layoutX="766.0" layoutY="187.0" radius="4.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Circle fill="#1fff5f" layoutX="766.0" layoutY="214.0" radius="4.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Circle fill="#ff8d1f" layoutX="766.0" layoutY="243.0" radius="4.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Circle fill="#ff1f1f" layoutX="766.0" layoutY="273.0" radius="4.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Text fx:id="insideTransfers" layoutX="782.0" layoutY="116.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Inside transfers" />
+                  <Text fx:id="clothes" layoutX="782.0" layoutY="142.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Clothes" />
+                  <Text fx:id="travel" layoutX="782.0" layoutY="191.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Travel" />
+                  <Text fx:id="bills" layoutX="782.0" layoutY="165.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bills" />
+                  <Text fx:id="heathNbeauty" layoutX="782.0" layoutY="219.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Heath&amp;Beauty" />
+                  <Text fx:id="food" layoutX="782.0" layoutY="247.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Food" />
+                  <Text fx:id="otherExpenses" layoutX="782.0" layoutY="277.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Others" />
+                  <Line endX="129.0" layoutX="846.0" layoutY="302.0" startX="-100.0" />
+                  <Text layoutX="762.0" layoutY="349.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Balance:">
+                     <font>
+                        <Font name="System Bold" size="17.0" />
+                     </font>
+                  </Text>
+                  <FontAwesomeIconView glyphName="DOLLAR" layoutX="840.0" layoutY="348.0" size="13" text="" />
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+    </children>
+</AnchorPane>

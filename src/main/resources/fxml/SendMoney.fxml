@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.geometry.Point3D?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" styleClass="MainBackGround" stylesheets="@../CSSStyle/SendMoney.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.BankApp.demo.Controller.SendMoney.SendMoneyController">
+   <children>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" styleClass="SidedBar" AnchorPane.leftAnchor="0.0">
+         <children>
+            <Button layoutY="1.0" mnemonicParsing="false" onAction="#goBack" prefHeight="31.0" prefWidth="50.0" styleClass="HomeButton" text="   Back" />
+            <FontAwesomeIconView glyphName="HOME" layoutX="-1.0" layoutY="21.0" size="13" text="" />
+         </children>
+      </AnchorPane>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" styleClass="SidedBar" AnchorPane.rightAnchor="0.0" />
+      <Text layoutX="200.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="IntroText" text="Send Money" wrappingWidth="92.53675842285156" />
+      <VBox layoutX="50.4" layoutY="53.0" prefHeight="279.0" prefWidth="400.0" styleClass="VboxContent">
+         <padding>
+            <Insets right="10.0" />
+         </padding>
+         <children>
+            <AnchorPane prefHeight="73.0" prefWidth="393.0" styleClass="AnchorPaneV">
+               <children>
+                  <Text layoutY="16.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Amount: " />
+                  <TextField fx:id="amountTField" layoutX="1.0" layoutY="20.0" prefHeight="37.0" prefWidth="394.0" />
+                  <Text layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\$">
+                     <font>
+                        <Font name="Arial" size="12.0" />
+                     </font>
+                  </Text>
+               </children>
+            </AnchorPane>
+            <Line endX="399.2929382324219" endY="2.300739197380608E-6" strokeWidth="0.1">
+               <rotationAxis>
+                  <Point3D />
+               </rotationAxis>
+            </Line>
+            <AnchorPane layoutX="10.0" layoutY="10.0" prefHeight="73.0" prefWidth="393.0" styleClass="AnchorPaneV">
+               <children>
+                  <Text layoutY="16.0" strokeType="OUTSIDE" strokeWidth="0.0" text="From: (Your Name)" />
+                  <TextField fx:id="sender" layoutX="1.0" layoutY="20.0" prefHeight="34.0" prefWidth="394.0" />
+               </children>
+            </AnchorPane>
+            <Line endX="399.2929382324219" endY="2.300739197380608E-6" layoutX="11.0" layoutY="76.0" strokeWidth="0.1" />
+            <AnchorPane layoutX="10.0" layoutY="81.0" prefHeight="73.0" prefWidth="393.0" styleClass="AnchorPaneV">
+               <children>
+                  <Text layoutY="16.0" strokeType="OUTSIDE" strokeWidth="0.0" text="To: (Gmail)" />
+                  <TextField fx:id="receiver" layoutX="1.0" layoutY="20.0" prefHeight="34.0" prefWidth="394.0" />
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="10.0" layoutY="152.0" prefHeight="73.0" prefWidth="393.0" styleClass="AnchorPaneV">
+               <children>
+                  <Text layoutX="1.0" layoutY="15.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Expenses on:" />
+                  <ChoiceBox fx:id="spendingBox" layoutX="1.0" layoutY="26.0" prefWidth="150.0" />
+               </children></AnchorPane>
+         </children>
+      </VBox>
+      <Button fx:id="continueButton" layoutX="174.0" layoutY="442.0" mnemonicParsing="false" onAction="#continueTransfer" prefHeight="26.0" prefWidth="144.0" styleClass="ContinueButton" text="Continue">
+         <effect>
+            <DropShadow />
+         </effect>
+      </Button>
+      <Text fx:id="msgText" layoutX="51.0" layoutY="401.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="msgText" wrappingWidth="398.39999999999986" />
+   </children>
+</AnchorPane>

@@ -1,0 +1,46 @@
+/* Login Style
+    */
+.Container {
+    -fx-background-color: white;
+}
+
+.Container_Vbox {
+    -fx-background-color: #00c2fd;
+    -fx-alignment: Center;
+}
+
+.Container_Label {
+    -fx-text-fill: white;
+    -fx-font-size: 30;
+    -fx-stroke: 12;
+    -fx-highlight-text-fill: black;
+}
+
+.Container_FontAwe {
+    -fx-alignment: Top right;
+}
+
+.Container_Text {
+    -fx-text-fill: white;
+    -fx-font-size: 16;
+}
+
+.Container_Button {
+    -fx-background-color: white;
+    -fx-text-fill: Black;
+    -fx-border-radius: 50%;
+}
+.Container_TextField {
+    -fx-background-color: rgba(35, 197, 189, 0.18);
+    -fx-background-radius: 10px;
+}
+
+.MessageLabel {
+    -fx-text-fill: red;
+    -fx-alignment: center-left;
+    -fx-pref-width: 520;
+    -fx-pref-height: 30;
+    -fx-padding: 30,0,0,0;
+    -fx-font-size: 15;
+}
+

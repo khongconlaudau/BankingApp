@@ -1,0 +1,84 @@
+/*
+       Back Ground for the Stage
+ */
+
+.MainBackGround {
+    -fx-pref-width: 500;
+    -fx-pref-height: 500;
+    -fx-background-color: rgba(237, 233, 233, 0.89);
+}
+
+/*
+ 2 sided bar on the right and left for the decor
+*/
+.SidedBar{
+    -fx-background-color: #00c2fd;
+    -fx-pref-width: 50;
+    -fx-pref-height: 500;
+    -fx-padding: 0 0 0 0;
+}
+/* Location: On the Top Left of the scene
+  This button has funtion to come back DashBoard scene
+*/
+.HomeButton{
+    -fx-background-color: #00c2fd;
+    -fx-pref-width: 50;
+    -fx-pref-height: 30;
+}
+
+/*  Intro text (Send Money)
+    Location: On the Center Top
+*/
+.IntroText {
+    -fx-font-size: 15;
+    -fx-font-family: Century;
+}
+
+/* VBox that contains the textfield that users will input in.
+   Location: On the center of the scene
+*/
+.VboxContent {
+    -fx-pref-width: 400;
+    -fx-pref-height: 279;
+    -fx-padding: 0 0 20 0;
+    -fx-spacing: 5;
+}
+
+/* Content inside VBox
+   eg: AnchorPane, Text, and TextField
+*/
+.AnchorPaneV {
+    -fx-pref-width: 400;
+    -fx-pref-height: 60;
+    -fx-spacing: 10;
+}
+.AnchorPaneV Text {
+    -fx-font-size: 15;
+}
+
+.AnchorPaneV TextField {
+    -fx-pref-width: 398;
+    -fx-pref-height:40 ;
+    -fx-border-style: none;
+    -fx-border-color: rgba(237, 233, 233, 0.89);
+    -fx-background-color: rgba(237, 233, 233, 0.89);
+    -fx-font-size: 15;
+    -fx-font-family: "Arial Rounded MT Bold";
+}
+
+/* Button to continue to PinNumber scene
+   Location: On the center bottom
+ */
+.ContinueButton {
+    -fx-background-color: #00c2fd;
+    -fx-background-radius: 20px;
+}
+/* Text msg if user input a invalid value
+  Location: On the center bottom
+*/
+.msgText {
+    -fx-background-color: white;
+    -fx-fill: red;
+    -fx-font-size: 15;
+
+}
