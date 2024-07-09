@@ -1,17 +1,14 @@
 package com.BankApp.demo.Model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
+import org.springframework.context.annotation.Lazy;
 
 @Entity
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
-public class AcountBalance {
+public class AccountBalance {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Integer id;
 
     @Column(
@@ -19,10 +16,9 @@ public class AcountBalance {
     )
     private Double balance;
 
-    @Column
-    private Double transactions;
-
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER,
+    cascade = CascadeType.ALL
+    )
     @JoinColumn(
             name = "user_id"
     )

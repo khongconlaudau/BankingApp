@@ -1,7 +1,9 @@
 package com.BankApp.demo.Controller.Register;
 
 import com.BankApp.demo.Checker.CheckNewAccount;
+import com.BankApp.demo.Model.AccountBalance;
 import com.BankApp.demo.Model.Users;
+import com.BankApp.demo.Repository.AccountBalanceRepo;
 import com.BankApp.demo.Repository.UserRepo;
 import com.BankApp.demo.SpringFXMLLoader;
 import javafx.event.ActionEvent;
@@ -16,19 +18,22 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import lombok.SneakyThrows;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Random;
 @Component
 
 public class RegisterController {
 
+    private AccountBalanceRepo accountBalanceRepo;
     private UserRepo userRepo;
     private SpringFXMLLoader fxmlLoader;
     private Stage stage;
     private Scene scene;
     private Random rand;
-
+    private final double defaultBalance = 1000;
     @FXML
     private Button backButton;
 
@@ -53,7 +58,6 @@ public class RegisterController {
     @FXML
     private CheckBox chequingButton;
 
-
     @FXML
     private  TextField phoneNumber;
 
@@ -69,21 +73,23 @@ public class RegisterController {
     @FXML
     private Label messageLabel;
 
-    public RegisterController(UserRepo userRepo, SpringFXMLLoader fxmlLoader) {
+    @Autowired
+    public RegisterController(UserRepo userRepo, SpringFXMLLoader fxmlLoader, AccountBalanceRepo accountBalanceRepo) {
         this.userRepo = userRepo;
         this.fxmlLoader = fxmlLoader;
+        this.accountBalanceRepo = accountBalanceRepo;
     }
 
     // go back to Log in Account (currently at SignUp Interface)
     @SneakyThrows
     @FXML
     void goBack(ActionEvent event) {
-       Parent root = fxmlLoader.load("/fxml/Login.fxml");
-       stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-       scene = new Scene(root);
-       stage.setScene(scene);
-       stage.setResizable(false);
-       stage.show();
+        Parent root = fxmlLoader.load("/fxml/Login.fxml");
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.setResizable(false);
+        stage.show();
     }
 
     @FXML
@@ -174,19 +180,11 @@ public class RegisterController {
 
     // create new account if meet the requirements
     @FXML
-    private void createAccount(MouseEvent event){
+    public void createAccount(MouseEvent event){
         if (checkNewAccount()){
-            Users user = new Users();
-            user.setFname(getFirstName());
-            user.setLname(getLastName());
-            user.setUserName(getUsername());
-            user.setPassword(getPassword());
-            user.setChequingNumber(getChequing());
-            user.setPhoneNumber(Long.parseLong(getPhoneNumber()));
-            user.setPin(Integer.parseInt(getPin()));
-            user.setGmail(getGmail());
-            userRepo.save(user);
+            userRepo.save(getNewUser());
             messageLabel.setText("Account created successfully");
+            saveDefaultBalance();
             clear();
         } else errorMessage();}
 
@@ -205,7 +203,7 @@ public class RegisterController {
     }
 
     public boolean userNameExists(){
-     return userRepo.existsByUserName(usernameField.getText());
+        return userRepo.existsByUserName(usernameField.getText());
     }
 
     public boolean chequingExists(){
@@ -221,4 +219,24 @@ public class RegisterController {
         else return userRepo.existsByGmail(getGmail());
     }
 
+    public Users getNewUser(){
+        Users user = new Users();
+        user.setFname(getFirstName());
+        user.setLname(getLastName());
+        user.setUserName(getUsername());
+        user.setPassword(getPassword());
+        user.setChequingNumber(getChequing());
+        user.setPhoneNumber(Long.parseLong(getPhoneNumber()));
+        user.setPin(Integer.parseInt(getPin()));
+        user.setGmail(getGmail());
+        return user;
+    }
+
+    // set Default Balance account for new user, $1000 since created new account"
+    public void saveDefaultBalance(){
+        AccountBalance accountBalance = new AccountBalance();
+        accountBalance.setBalance(defaultBalance);
+        accountBalance.setUsers(getNewUser());
+        accountBalanceRepo.save(accountBalance);
+    }
 }

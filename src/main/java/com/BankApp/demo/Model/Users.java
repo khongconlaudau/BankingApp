@@ -9,7 +9,7 @@ import java.util.List;
 @Entity
 public class Users {
     @Id
-    @GeneratedValue( strategy = GenerationType.AUTO)
+    @GeneratedValue( strategy = GenerationType.SEQUENCE)
     private Integer id;
 
     @Column(
@@ -22,11 +22,11 @@ public class Users {
     )
     private String lname;
 
-   @Column(
-         nullable = false,
-   //         unique = true,
-           length = 30
-   )
+    @Column(
+            nullable = false,
+            //         unique = true,
+            length = 30
+    )
     private String userName;
 
     @Column(
@@ -37,13 +37,13 @@ public class Users {
 
     @Column(
             nullable = false,
-     //      unique = true,
+            //      unique = true,
             length = 7
     )
     private String chequingNumber;
 
     @Column(
-          //  unique = true,
+            //  unique = true,
             nullable = false,
             length = 16
     )
@@ -62,8 +62,10 @@ public class Users {
     private String gmail;
 
     @OneToMany(
+            fetch = FetchType.EAGER,
             mappedBy = "users"
     )
-    private List<AcountBalance> acountBalanceList;
+    private List<AccountBalance> acountBalanceList;
 
 }
+

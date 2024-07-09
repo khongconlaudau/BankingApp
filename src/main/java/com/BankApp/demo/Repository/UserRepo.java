@@ -3,8 +3,9 @@ package com.BankApp.demo.Repository;
 import com.BankApp.demo.Model.Users;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Repository;
 
-public interface UserRepo extends JpaRepository<Users, Integer> {
+public interface UserRepo extends JpaRepository<Users, Integer>  {
     boolean existsByUserName(String userName);
 
     boolean existsByPassword(String password);
