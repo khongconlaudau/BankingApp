@@ -25,7 +25,9 @@ public class LoginController {
     private Stage stage;
     private Scene scene;
     private boolean passwordVisible = false;
+    // current user name
     private String user;
+
     private DashboardController dashboardController;
     @FXML
     private TextField userName;
@@ -94,7 +96,6 @@ public class LoginController {
     @FXML
     public void Login(ActionEvent event){
         if (userRepo.existsByUserName(userName.getText())){
-
             if (passwordVisible == true){
                if(userRepo.existsByPassword(passwordTextField.getText())) {
                    // save user account if login is successful

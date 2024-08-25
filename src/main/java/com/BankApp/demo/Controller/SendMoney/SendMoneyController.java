@@ -1,5 +1,8 @@
 package com.BankApp.demo.Controller.SendMoney;
 
+import com.BankApp.demo.Controller.Dashboard.DashboardController;
+import com.BankApp.demo.Controller.UserAccount.AccountController;
+import com.BankApp.demo.Model.Users;
 import com.BankApp.demo.Repository.UserRepo;
 import com.BankApp.demo.SpringFXMLLoader;
 import javafx.event.ActionEvent;
@@ -28,6 +31,7 @@ public class SendMoneyController implements Initializable {
     private UserRepo userRepo;
     private Stage stage;
     private Scene scene;
+    private DashboardController dashboardController;
     @FXML
     private ChoiceBox<String> spendingBox;
     @FXML
@@ -40,9 +44,11 @@ public class SendMoneyController implements Initializable {
     private Text msgText;
 
     @Autowired
-    public SendMoneyController(SpringFXMLLoader fxmlLoader, UserRepo userRepo) {
+    public SendMoneyController(SpringFXMLLoader fxmlLoader, UserRepo userRepo,DashboardController dashboardController) {
         this.fxmlLoader = fxmlLoader;
         this.userRepo = userRepo;
+        this.dashboardController = dashboardController;
+
     }
 
     @Override
@@ -99,8 +105,6 @@ public class SendMoneyController implements Initializable {
 
     // Check if the needs are met to switch to the Pin Scene
     public boolean meetAll() {
-        double amount = Double.parseDouble(amountTField.getText().replace(",",""));
-
         if (!validAmount())  return false;
         else if (!validSender()) return false;
         else if (!validReceiver()) return false;
@@ -110,17 +114,19 @@ public class SendMoneyController implements Initializable {
 
     // check if amount is valid number
     public boolean validAmount(){
-        double amount = Double.parseDouble(amountTField.getText().replace(",",""));
-        return amount >0 && !(amountTField.getText() ==null);
+        double amount = -1;
+        if (!amountTField.getText().isEmpty()) {
+        amount = Double.parseDouble(amountTField.getText().replace(",",""));}
+        return amount >0 && amount <= Double.parseDouble(dashboardController.getBalance()) && !(amountTField.getText().isEmpty());
     }
     // check if sender is a valid input or not
     public boolean validSender(){
-        return !sender.getText().isEmpty() && !sender.getText().matches(".*\\d.*");
+        return !sender.getText().isEmpty() && !sender.getText().matches(".*\\d.*") && (sender.getText().length() >=2) && !sender.getText().isBlank();
     }
 
     // check if receiver exists or not
     public boolean validReceiver() {
-        return (userRepo.existsByGmail(receiver.getText()) && !receiver.getText().isEmpty());
+        return (userRepo.existsByGmail(receiver.getText()) && !receiver.getText().isEmpty()) && !receiver.getText().equals(dashboardController.getCurrentUserGmail());
     }
 
     // check if spendingBox is selected or not
@@ -135,5 +141,17 @@ public class SendMoneyController implements Initializable {
         else if(!validSender()) msgText.setText("Message: Please enter a valid sender.");
         else if(!validReceiver()) msgText.setText("Message: Please enter a valid receiver.");
         else if(!boxIsSelected()) msgText.setText("Message: Please select a item.");
+    }
+
+
+    // identify who gonna receive the money if the receiver is valid
+    public Users identifyReceiver(){
+        if (validReceiver()) return  userRepo.findUsersByGmail(receiver.getText());
+        return null;
+    }
+
+    // get how much money transfer
+    public double getAmount(){
+        return Double.parseDouble(this.amountTField.getText());
     }
 }

@@ -148,7 +148,7 @@
                            </font>
                         </Text>
                         <Text fill="WHITE" layoutX="22.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\$ " />
-                        <Text fx:id="amount" fill="WHITE" layoutX="32.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="1000">
+                        <Text fx:id="amountOnCard" fill="WHITE" layoutX="32.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="1000">
                            <font>
                               <Font name="System Bold" size="16.0" />
                            </font>
@@ -203,7 +203,7 @@
                         <Font name="System Bold" size="16.0" />
                      </font>
                   </Text>
-                  <StackedBarChart fx:id="stackedBarChart" layoutY="63.0" prefHeight="239.0" prefWidth="755.0">
+                  <StackedBarChart fx:id="stackedBarChart" layoutY="48.0" prefHeight="239.0" prefWidth="755.0">
                      <xAxis>
                         <CategoryAxis side="BOTTOM" />
                      </xAxis>
@@ -219,7 +219,7 @@
                         <Font name="System Bold" size="15.0" />
                      </font>
                   </Text>
-                  <Text layoutX="851.0" layoutY="349.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="134.8245849609375">
+                  <Text fx:id="balance" layoutX="851.0" layoutY="349.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="134.8245849609375">
                      <font>
                         <Font name="System Bold" size="15.0" />
                      </font>

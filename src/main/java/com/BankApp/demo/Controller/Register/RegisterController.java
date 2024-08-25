@@ -24,7 +24,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Random;
 @Component
-
 public class RegisterController {
 
     private AccountBalanceRepo accountBalanceRepo;
@@ -33,7 +32,7 @@ public class RegisterController {
     private Stage stage;
     private Scene scene;
     private Random rand;
-    private final double defaultBalance = 1000;
+    private final double defaultBalance = 1000.00;
     @FXML
     private Button backButton;
 
@@ -180,11 +179,16 @@ public class RegisterController {
 
     // create new account if meet the requirements
     @FXML
-    public void createAccount(MouseEvent event){
-        if (checkNewAccount()){
-            userRepo.save(getNewUser());
+    public void createAccount(MouseEvent event) throws InterruptedException {
+        if (    checkNewAccount()){
+            Users savedUser =userRepo.save(getNewUser());
             messageLabel.setText("Account created successfully");
-            saveDefaultBalance();
+
+            // set Default Balance account for new user, $1000 since created new account"
+            AccountBalance accountBalance = new AccountBalance();
+            accountBalance.setBalances(defaultBalance);
+            accountBalance.setUsers(savedUser);
+            accountBalanceRepo.save(accountBalance);
             clear();
         } else errorMessage();}
 
@@ -232,11 +236,6 @@ public class RegisterController {
         return user;
     }
 
-    // set Default Balance account for new user, $1000 since created new account"
-    public void saveDefaultBalance(){
-        AccountBalance accountBalance = new AccountBalance();
-        accountBalance.setBalance(defaultBalance);
-        accountBalance.setUsers(getNewUser());
-        accountBalanceRepo.save(accountBalance);
-    }
+
+
 }

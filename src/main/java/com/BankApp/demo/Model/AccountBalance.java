@@ -2,7 +2,7 @@ package com.BankApp.demo.Model;
 
 import jakarta.persistence.*;
 import lombok.Data;
-import org.springframework.context.annotation.Lazy;
+import org.springframework.transaction.annotation.Transactional;
 
 @Entity
 @Data
@@ -14,13 +14,14 @@ public class AccountBalance {
     @Column(
             nullable = false
     )
-    private Double balance;
+    private Double balances;
 
     @ManyToOne(fetch = FetchType.EAGER,
-    cascade = CascadeType.ALL
+            cascade = CascadeType.MERGE
     )
     @JoinColumn(
             name = "user_id"
+
     )
     private Users users;
 }

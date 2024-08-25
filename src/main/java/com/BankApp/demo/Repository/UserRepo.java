@@ -3,7 +3,6 @@ package com.BankApp.demo.Repository;
 import com.BankApp.demo.Model.Users;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.stereotype.Repository;
 
 public interface UserRepo extends JpaRepository<Users, Integer>  {
     boolean existsByUserName(String userName);
@@ -15,6 +14,8 @@ public interface UserRepo extends JpaRepository<Users, Integer>  {
     boolean existsByPhoneNumber(Long phoneNumber);
 
     boolean existsByGmail(String gmail);
+
+    Users findUsersByGmail(String gmail);
 
     @Query("SELECT u.id FROM Users AS u WHERE u.userName = :userName")
     Integer getUserIdByUserName(String userName);
@@ -39,4 +40,10 @@ public interface UserRepo extends JpaRepository<Users, Integer>  {
 
     @Query("SELECT u.gmail FROM Users as u WHERE u.id = :id")
     String getUserGmailById(int id);
+
+    @Query("SELECT u FROM Users as u WHERE u.id = :id")
+    Users getUsersById(int id);
+
+
+
 }

@@ -1,6 +1,9 @@
 package com.BankApp.demo.Controller.Dashboard;
 
 import com.BankApp.demo.Controller.Loggin.LoginController;
+import com.BankApp.demo.Controller.Register.RegisterController;
+import com.BankApp.demo.Model.Users;
+import com.BankApp.demo.Repository.AccountBalanceRepo;
 import com.BankApp.demo.Repository.UserRepo;
 import com.BankApp.demo.SpringFXMLLoader;
 import javafx.event.ActionEvent;
@@ -14,6 +17,7 @@ import javafx.scene.chart.StackedBarChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import lombok.Data;
 import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -22,6 +26,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 @Component
 public class DashboardController implements Initializable {
+    private final RegisterController registerController;
     @FXML
     private AreaChart<?,?> areaChart;
     @FXML
@@ -30,7 +35,7 @@ public class DashboardController implements Initializable {
     private Text nameOnCard;
     // the limit on card in the dashboard
     @FXML
-    private Text amount;
+    private Text amountOnCard;
     @FXML
     private Text balance;
     @FXML
@@ -52,20 +57,24 @@ public class DashboardController implements Initializable {
     private Scene scene;
     private SpringFXMLLoader fxmlLoader;
     private UserRepo userRepo;
+    private AccountBalanceRepo accountBalanceRepo;
     private LoginController loginController;
 
+
     @Autowired
-    public DashboardController(SpringFXMLLoader fxmlLoader,UserRepo userRepo,LoginController loginController) {
+    public DashboardController(SpringFXMLLoader fxmlLoader, UserRepo userRepo, LoginController loginController, AccountBalanceRepo accountBalanceRepo, RegisterController registerController) {
         this.fxmlLoader = fxmlLoader;
         this.userRepo = userRepo;
         this.loginController = loginController;
+        this.accountBalanceRepo = accountBalanceRepo;
+        this.registerController = registerController;
     }
 
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        Integer id = userRepo.getUserIdByUserName(loginController.getUserName());
+//        Integer id = userRepo.getUserIdByUserName(loginController.getUserName());
         //  set data for AreaChart
         XYChart.Series series = new XYChart.Series();
 
@@ -104,14 +113,16 @@ public class DashboardController implements Initializable {
         stackedBarChart.getData().add(series1);
 
         // set Name on card for users
-        nameOnCard.setText(userRepo.getUserFirstNameById(id) + " " + userRepo.getUserLastNameById(id));
+        nameOnCard.setText(userRepo.getUserFirstNameById(getCurrentUserId()) + " " + userRepo.getUserLastNameById(getCurrentUserId()));
 
         // set limit money can spend on card of the users
-        amount.setText("2000");
+        // default value will be $2000 that just uses for decor
+        amountOnCard.setText("2000");
 
-//        // if account is created successfully, the default balance will be $1000 for each account
-//        // ***** WRONG ******
-//        balance.setText("1000");
+//     Set Account Balance locates near the Expenses
+//     Get Account Balance using Foreign Key in Account Balance table
+
+       setBalance(accountBalanceRepo.getAccountBalancesByUsersId(getCurrentUser()).toString());
     }
 
     // switch to SavingAccount Scene
@@ -160,10 +171,44 @@ public class DashboardController implements Initializable {
     }
 
     // get Id of the user account in database
-  public Integer getUserId(){
+  public Integer getCurrentUserId(){
         return  userRepo.getUserIdByUserName(loginController.getUserName());
   }
 
+  public String getCurrentUserPin(){
+        return userRepo.getUserPinById(getCurrentUserId());
+  }
 
+  public Users getCurrentUser(){
+       return userRepo.getUsersById(getCurrentUserId());
+      }
+
+  public String getCurrentUserGmail(){
+        return userRepo.getUserGmailById(getCurrentUserId());
+  }
+
+  public String getBalance() {
+        return balance.getText();
+    }
+
+  public void setBalance(String balance){
+        this.balance.setText(balance);
+  }
+
+  public String getCurrentUserFullName(){
+        return userRepo.getUserFirstNameById(getCurrentUserId())+" "+ userRepo.getUserLastNameById(getCurrentUserId());
+  }
+
+  public String getCurrentUserName(){
+     return userRepo.getUserNameById(getCurrentUserId());
+  }
+
+  public String getCurrentUserChequing(){
+        return userRepo.getUserChequingNumberById(getCurrentUserId());
+  }
+
+  public String getCurrentUserPhoneN(){
+        return userRepo.getUserPhoneNumberById(getCurrentUserId());
+  }
 
 }

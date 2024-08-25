@@ -1,7 +1,6 @@
 package com.BankApp.demo.Controller.UserAccount;
 
 import com.BankApp.demo.Controller.Dashboard.DashboardController;
-import com.BankApp.demo.Controller.Loggin.LoginController;
 import com.BankApp.demo.Repository.UserRepo;
 import com.BankApp.demo.SpringFXMLLoader;
 import javafx.event.ActionEvent;
@@ -12,6 +11,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -39,6 +39,9 @@ public class AccountController implements Initializable {
     private UserRepo userRepo;
     private DashboardController dashboardController;
 
+
+
+
     @Autowired
     public AccountController(SpringFXMLLoader loader, UserRepo userRepo,
                              DashboardController dashboardController) {
@@ -51,16 +54,16 @@ public class AccountController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
         // set Full name of user by using user's id
-        String fName =userRepo.getUserFirstNameById(dashboardController.getUserId())+" "+ userRepo.getUserLastNameById(dashboardController.getUserId());
-        fullName.setText("Full Name: "+fName);
+        String currentUserFullName = dashboardController.getCurrentUserFullName();
+        fullName.setText("Full Name: "+ currentUserFullName);
 
         // set Username information by using user's id
-        String uName = userRepo.getUserNameById(dashboardController.getUserId());
-        userName.setText("User Name: "+uName);
+        String currentUserName = dashboardController.getCurrentUserName();
+        userName.setText("User Name: "+ currentUserName);
 
         // set user's Chequing by using user's id
-        String chequing = userRepo.getUserChequingNumberById(dashboardController.getUserId());
-        chequingInfor.setText("Chequing: "+chequing);
+        String currentUserChequing = dashboardController.getCurrentUserChequing();
+        chequingInfor.setText("Chequing: "+ currentUserChequing);
 
         // set user's Phone Number by using user's id
         phoneNumber.setText("Phone Number: "+hidePhoneNumber());
@@ -68,8 +71,8 @@ public class AccountController implements Initializable {
         pinInfor.setText("Pin: ****" );
 
         // set user's Gmail by using user's id
-        String gmail = userRepo.getUserGmailById(dashboardController.getUserId());
-        gmailInfor.setText("Gmail: "+gmail);
+        String currentUserGmail = dashboardController.getCurrentUserGmail();
+        gmailInfor.setText("Gmail: "+ currentUserGmail);
     }
 
     // go back to Main Dashboard when click Home Button
@@ -85,11 +88,14 @@ public class AccountController implements Initializable {
 
     // convert Phone Number infor into hide character(*)
     public String hidePhoneNumber(){
-        String pNumber = userRepo.getUserPhoneNumberById(dashboardController.getUserId());
+        String pNumber = dashboardController.getCurrentUserPhoneN();
         char[]  formattedPNumber = pNumber.toCharArray();
         for(int i=0;i<formattedPNumber.length-3;i++){
             formattedPNumber[i] = '*';
         }
         return new String(formattedPNumber);
     }
+
+
+
 }

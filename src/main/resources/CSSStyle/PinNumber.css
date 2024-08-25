@@ -32,3 +32,8 @@
     -fx-pref-height: 10;
     -fx-font-size: 13;
 }
+
+.msgText{
+    -fx-fill: red;
+    -fx-font-size: 14;
+}
