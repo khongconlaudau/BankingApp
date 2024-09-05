@@ -48,7 +48,7 @@ public class TransactionController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         List<Transactions> allTransactions = new ArrayList<>();
         allTransactions.addAll(transactionRepo.findAllByUsersOrderByDate(dashboardController.getCurrentUser()));
-
+        allTransactions.addAll(transactionRepo.findAllByReceiverOrderByDate(dashboardController.getCurrentUserGmail()));
 
         allTransactions.sort((Transactions t1, Transactions t2) -> t2.getDate().compareTo(t1.getDate())
         );
