@@ -1,14 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.BankApp.demo.Controller.Transactions.TransactionController"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane prefHeight="400.0" prefWidth="600.0" styleClass="anchorPaneMain" stylesheets="@../CSSStyle/Transactions.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.BankApp.demo.Controller.Transactions.TransactionController">
+   <children>
+      <AnchorPane layoutX="-1.0" prefHeight="200.0" prefWidth="200.0" styleClass="sideMenu">
+         <children>
+            <Button layoutX="85.0" layoutY="14.0" mnemonicParsing="false" onAction="#goBack" text="Menu" />
+         </children></AnchorPane>
+      <Text layoutX="617.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Transactions">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Text>
+      <ScrollPane hbarPolicy="ALWAYS" layoutX="158.0" layoutY="128.0" pannable="true" prefHeight="200.0" prefWidth="200.0" styleClass="scrollPane" vbarPolicy="ALWAYS">
+         <content>
+            <VBox fx:id="vBox" prefHeight="623.0" prefWidth="638.0" styleClass="vbox" />
+         </content>
+      </ScrollPane>
+      <Text layoutX="459.0" layoutY="128.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Receiver">
+         <font>
+            <Font name="System Bold Italic" size="14.0" />
+         </font>
+      </Text>
+      <Text layoutX="863.0" layoutY="128.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sender">
+         <font>
+            <Font name="System Bold Italic" size="14.0" />
+         </font>
+      </Text>
+   </children>
 </AnchorPane>

@@ -29,8 +29,8 @@
       <Label fx:id="unit2" layoutX="82.0" layoutY="55.0" prefHeight="50.0" prefWidth="51.0" />
       <Label fx:id="unit3" layoutX="162.0" layoutY="55.0" prefHeight="50.0" prefWidth="51.0" />
       <Label fx:id="unit4" layoutX="241.0" layoutY="54.0" prefHeight="50.0" prefWidth="51.0" />
-      <Button layoutX="-3.0" mnemonicParsing="false" onAction="#goBack" prefHeight="37.0" prefWidth="71.0" styleClass="backButton" />
-      <Text fx:id="msgText" layoutX="6.0" layoutY="144.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="msgText" wrappingWidth="292.5367317199707" />
+      <Button fx:id="backButton" layoutX="-3.0" mnemonicParsing="false" onAction="#goBack" prefHeight="37.0" prefWidth="71.0" styleClass="backButton" />
+      <Text fx:id="msgText" fill="#383737" layoutX="6.0" layoutY="144.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="msgText" wrappingWidth="292.5367317199707" />
       <FontAwesomeIconView disable="true" glyphName="ARROW_LEFT" layoutX="8.0" layoutY="19.0" size="15" text="" />
    </children>
 </AnchorPane>

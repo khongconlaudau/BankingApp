@@ -1,7 +1,6 @@
 package com.BankApp.demo.Controller.SendMoney;
 
 import com.BankApp.demo.Controller.Dashboard.DashboardController;
-import com.BankApp.demo.Controller.UserAccount.AccountController;
 import com.BankApp.demo.Model.Users;
 import com.BankApp.demo.Repository.UserRepo;
 import com.BankApp.demo.SpringFXMLLoader;
@@ -11,12 +10,17 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextFormatter;
 import javafx.scene.text.Text;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javafx.util.StringConverter;
+import lombok.Getter;
+import lombok.Setter;
 import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -30,7 +34,12 @@ public class SendMoneyController implements Initializable {
     private SpringFXMLLoader fxmlLoader;
     private UserRepo userRepo;
     private Stage stage;
+    private Stage secondaryStage;
     private Scene scene;
+    private boolean confirmChoice;
+    @Setter
+    @Getter
+    private double amount = -1;
     private DashboardController dashboardController;
     @FXML
     private ChoiceBox<String> spendingBox;
@@ -48,13 +57,12 @@ public class SendMoneyController implements Initializable {
         this.fxmlLoader = fxmlLoader;
         this.userRepo = userRepo;
         this.dashboardController = dashboardController;
-
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         // initilize items for choice box
-        String[] items = {"Clothes", "Bills", "Travel", "Heath&Beauty", "Food", "Others"};
+        String[] items = {"Inside Transfer","Clothes", "Bills", "Travel", "Heath&Beauty", "Food", "Others"};
         spendingBox.getItems().addAll(items);
 
         // Regex text field with Currency form
@@ -103,6 +111,37 @@ public class SendMoneyController implements Initializable {
         } else message();
     }
 
+    public void confirmStage(ActionEvent event){
+        confirmChoice = false;
+        Parent root = fxmlLoader.load("/fxml/Confirmation.fxml");
+        Scene scene = new Scene(root);
+
+        secondaryStage = new Stage();
+        secondaryStage.setScene(scene);
+        secondaryStage.initStyle(StageStyle.UNDECORATED);
+        secondaryStage.initModality(Modality.WINDOW_MODAL);
+        secondaryStage.initOwner(this.stage);
+
+        secondaryStage.showAndWait();
+
+    }
+
+    @FXML
+    public void clickedYes(ActionEvent event){
+        confirmChoice = true;
+        secondaryStage.close();
+
+    }
+
+    @FXML
+    public void clickedNo(ActionEvent event){
+        confirmChoice = false;
+        secondaryStage.close();
+
+    }
+
+
+
     // Check if the needs are met to switch to the Pin Scene
     public boolean meetAll() {
         if (!validAmount())  return false;
@@ -114,7 +153,7 @@ public class SendMoneyController implements Initializable {
 
     // check if amount is valid number
     public boolean validAmount(){
-        double amount = -1;
+
         if (!amountTField.getText().isEmpty()) {
         amount = Double.parseDouble(amountTField.getText().replace(",",""));}
         return amount >0 && amount <= Double.parseDouble(dashboardController.getBalance()) && !(amountTField.getText().isEmpty());
@@ -150,8 +189,20 @@ public class SendMoneyController implements Initializable {
         return null;
     }
 
-    // get how much money transfer
-    public double getAmount(){
-        return Double.parseDouble(this.amountTField.getText());
+    public String getReceiver(){
+        return receiver.getText();
+    }
+
+    public String getSender(){
+        return sender.getText();
+    }
+
+    public String getItem(){
+        return spendingBox.getValue();
+    }
+
+
+    public boolean getConfirmChoice(){
+        return confirmChoice;
     }
 }

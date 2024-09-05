@@ -2,6 +2,7 @@ package com.BankApp.demo.Controller.PinNumber;
 
 import com.BankApp.demo.Controller.Dashboard.DashboardController;
 import com.BankApp.demo.Controller.SendMoney.SendMoneyController;
+import com.BankApp.demo.Controller.Transactions.TransactionController;
 import com.BankApp.demo.Repository.AccountBalanceRepo;
 import com.BankApp.demo.SpringFXMLLoader;
 import javafx.animation.PauseTransition;
@@ -19,7 +20,9 @@ import javafx.util.Duration;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.awt.*;
+import java.time.LocalDate;
+import java.time.Month;
+import java.time.Year;
 
 @Component
 public class PinNumberController  {
@@ -27,26 +30,28 @@ public class PinNumberController  {
     private DashboardController dashboardController;
     private AccountBalanceRepo accountBalanceRepo;
     private SendMoneyController sendMoneyController;
+    private TransactionController transactionController;
     private Stage stage;
     private Scene scene;
     private String pin = "";
     private int limitedEnter = 0;
     @FXML
     private Text msgText;
-
     @FXML
-    private Button button0,button1, button2, button3, button4, button5, button6, button7, button8, button9,delButton,enterButton;
+    private Button button0,button1, button2, button3, button4, button5, button6, button7, button8, button9,delButton,enterButton,backButton;
     @FXML
     private Label unit1,unit2,unit3,unit4;
 
 
     @Autowired
     public PinNumberController(SpringFXMLLoader loader, DashboardController dashboardController,
-                               AccountBalanceRepo accountBalanceRepo, SendMoneyController sendMoneyController) {
+                               AccountBalanceRepo accountBalanceRepo, SendMoneyController sendMoneyController,
+                               TransactionController transactionController) {
         this.loader = loader;
         this.dashboardController = dashboardController;
         this.accountBalanceRepo = accountBalanceRepo ;
         this.sendMoneyController = sendMoneyController;
+        this.transactionController = transactionController;
     }
     // go back to Send Money secene when click on beack button on the Top Left
     @FXML
@@ -144,56 +149,60 @@ public class PinNumberController  {
         }
     }
 
-    // get pin from user input
-//    public String getPin(ActionEvent event) {
-//        if (!unit4.getText().isEmpty()){
-//            Label[] units = {unit1,unit2,unit3,unit4};
-//            for (int i = 0; i < units.length; i++) {
-//                pin += units[i].getText();
-//            }
-//        }
-//        return pin;
-//    }
-    // if the user enter a correct Pin the money will be sent
+
 
     public void enterButton(ActionEvent event) throws InterruptedException {
         if(validPin()){
-            // sender (current user)
 
-            double availableBalance = Double.parseDouble(dashboardController.getBalance()) - sendMoneyController.getAmount();
-            // update balance of the sender in database
-            accountBalanceRepo.updateBalances(
-                    availableBalance,
-                    dashboardController.getCurrentUser()
-            );
+            sendMoneyController.confirmStage(event);
+           boolean userConfirm = sendMoneyController.getConfirmChoice();
+            if (!userConfirm){
+                backtoDashBoard(event);
+                pin = "";
+            } else  {
 
-            // receiver
-            // update balance of the receiver in database
-            accountBalanceRepo.updateBalances(
-                    accountBalanceRepo.getAccountBalancesByUsersId(
-                            sendMoneyController.identifyReceiver()
-                    ) + sendMoneyController.getAmount(), sendMoneyController.identifyReceiver()
-            );
+                // sender (current user)
+                double previousBalance = Double.parseDouble(dashboardController.getBalance());
+                double availableBalance = previousBalance - sendMoneyController.getAmount();
+                LocalDate now = LocalDate.now();
 
-            // prompt msg to notify successful transfer
-            msgText.setText("Send money is successful!");
-            msgText.setFill(Color.GREEN);
+                // save the transaction to database
+                transactionController.saveToTransactionToDB(now,sendMoneyController.getReceiver(),sendMoneyController.getSender(),sendMoneyController.getAmount()
+                        ,sendMoneyController.getItem(),previousBalance,availableBalance, dashboardController.getCurrentUser());
+
+                // update balance of the sender in database
+                accountBalanceRepo.updateBalances(
+                        availableBalance,
+                        dashboardController.getCurrentUser()
+                );
+
+                // receiver
+                // update balance of the receiver in database
+                accountBalanceRepo.updateBalances(
+                        accountBalanceRepo.getAccountBalancesByUsersId(
+                                sendMoneyController.identifyReceiver())
+                                + sendMoneyController.getAmount(), sendMoneyController.identifyReceiver()
+                );
+
+
+                // prompt msg to notify successful transfer
+                msgText.setText("Send money is successful!");
+                msgText.setFill(Color.GREEN);
+
+                pin = "";
+                PauseTransition pause = getPauseTransition(event);
+                pause.play();
+            }
+
+
         }else{
             if (limitedEnter <= 3) {msgText();
             limitedEnter++;}
             /* if limit enter time reaches to 4 times it will automatically disable all button
                 and return back to DashBoard*/
             else if (limitedEnter ==4) {
-                    Button[] buttons = {button0,button1,button2
-                                        ,button3,button4,button5
-                                        ,button6,button7,button8
-                                        ,button9,delButton,enterButton};
 
-                    for(Button b : buttons){
-                        b.setDisable(true);
-                    }
                     msgText.setText("Incorrect Pin. Return to DashBoard after 3 second!");
-
                 PauseTransition pause = getPauseTransition(event);
                 pause.play();
 
@@ -203,15 +212,23 @@ public class PinNumberController  {
     }
 
     private PauseTransition getPauseTransition(ActionEvent event) {
+        Button[] buttons = {button0,button1,button2
+                ,button3,button4,button5
+                ,button6,button7,button8
+                ,button9,delButton,enterButton,backButton};
+
+        for(Button b : buttons){
+            b.setDisable(true);
+        }
         PauseTransition pause = new PauseTransition(Duration.seconds(2));
         pause.setOnFinished(e ->{
-                    msgText.setText("3!");
+                    msgText.setText("Back to DashBoard in 3s!");
                     PauseTransition pause2 = new PauseTransition(Duration.seconds(1));
                     pause2.setOnFinished(e2 -> {
-                        msgText.setText("2!");
+                        msgText.setText("Back to DashBoard in 2s!");
                         PauseTransition pause3 = new PauseTransition(Duration.seconds(1));
                         pause3.setOnFinished(e3 -> {
-                            msgText.setText("1!");
+                            msgText.setText("Back to DashBoard in 1s!");
                             PauseTransition pause4 = new PauseTransition(Duration.seconds(1));
                             pause4.setOnFinished(e4 -> {
                                 backtoDashBoard(event);
@@ -248,6 +265,5 @@ public class PinNumberController  {
             }
         }
     }
-
 
 }

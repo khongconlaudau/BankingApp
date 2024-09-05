@@ -16,12 +16,12 @@ public class AccountBalance {
     )
     private Double balances;
 
-    @ManyToOne(fetch = FetchType.EAGER,
+    @ManyToOne(
             cascade = CascadeType.MERGE
     )
     @JoinColumn(
             name = "user_id"
-
     )
     private Users users;
+
 }

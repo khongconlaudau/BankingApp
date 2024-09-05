@@ -3,6 +3,7 @@ package com.BankApp.demo.Model;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Data
@@ -61,11 +62,35 @@ public class Users {
     )
     private String gmail;
 
+    @Column(
+
+    )
+    private LocalDate createdDate;
+
     @OneToMany(
-            fetch = FetchType.EAGER,
             mappedBy = "users"
     )
     private List<AccountBalance> acountBalanceList;
 
+    @OneToMany (
+            mappedBy = "users"
+    )
+    private List<Transactions> transactionsList;
+
+
+    @Override
+    public String toString() {
+        return "Users{" +
+                "'chequingNumber='" + chequingNumber + '\'' +
+                ", fname='" + fname + '\'' +
+                ", gmail='" + gmail + '\'' +
+                ", id=" + id +
+                ", lname='" + lname + '\'' +
+                ", password='" + password + '\'' +
+                ", phoneNumber=" + phoneNumber +
+                ", pin=" + pin +
+                ", userName='" + userName + '\'' +
+                '}';
+    }
 }
 

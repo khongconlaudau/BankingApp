@@ -1,6 +1,8 @@
 package com.BankApp.demo.Controller.UserAccount;
 
 import com.BankApp.demo.Controller.Dashboard.DashboardController;
+import com.BankApp.demo.Model.Transactions;
+import com.BankApp.demo.Repository.TransactionRepo;
 import com.BankApp.demo.Repository.UserRepo;
 import com.BankApp.demo.SpringFXMLLoader;
 import javafx.event.ActionEvent;
@@ -16,6 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
 @Component
@@ -38,7 +41,6 @@ public class AccountController implements Initializable {
     private Scene scene;
     private UserRepo userRepo;
     private DashboardController dashboardController;
-
 
 
 
@@ -73,6 +75,10 @@ public class AccountController implements Initializable {
         // set user's Gmail by using user's id
         String currentUserGmail = dashboardController.getCurrentUserGmail();
         gmailInfor.setText("Gmail: "+ currentUserGmail);
+
+
+
+
     }
 
     // go back to Main Dashboard when click Home Button

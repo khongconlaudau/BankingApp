@@ -9,11 +9,22 @@
 
 
 /*
-   Sided Frame
+   Sided Frame(these 2 blue bar) on the outer side of the frame using for decoration
  */
 .sidedVbox {
     -fx-background-color: #00c2fd;
 }
+
+
+/*
+    Container of the sidedMenu
+ */
+.anchorPaneD {
+    -fx-background-color: white;
+    -fx-pref-width: 146;
+    -fx-pref-height: 750;
+}
+
 
 .menuVbox {
     -fx-pref-width: 145;
@@ -26,12 +37,13 @@
     -fx-pref-height: 30;
 }
 
+
 .Button {
     -fx-alignment: left;
     -fx-background-color: white;
     -fx-border-color: white;
     -fx-border-style: none;
-    -fx-pref-width: 145;
+    -fx-pref-width: 146;
     -fx-pref-height: 30;
     -fx-text-fill: Black;
     -fx-font-size: 13;
@@ -49,12 +61,27 @@
     -fx-pref-height: 260;
 }
 
-.HBox_Container_Vbox {
+.expenses-console, .image-console, .transactions-console, .card-holder-console {
     -fx-pref-width: 272;
     -fx-pref-height: 239;
     -fx-background-color: White;
     -fx-background-radius: 10px;
-    -fx-spacing: 20;
+}
+
+
+.transactions-console, .card-holder-console{
+    -fx-spacing: 15;
+}
+
+.transactions-console-text, .card-holder-console-text   {
+    -fx-text-fill: black;
+    -fx-font-size: 15px;
+    -fx-font-family: "Arial Rounded MT Bold"  ;
+    -fx-translate-x: 80px;
+}
+.transactions-console-content{
+    -fx-pref-width: 272;
+    -fx-pref-height: 55;
 }
 
  /*
@@ -84,4 +111,23 @@
     -fx-background-color: white;
     -fx-background-radius: 10px;
 }
+
+
+
+.chart-bar{
+    -fx-bar-fill: rgba(11, 144, 227, 0.8);
+}
+
+.area-bar{
+    -fx-font-size: 13px;
+    -fx-font-family: "Arial Rounded MT Bold";
+}
+
+.chart-horizontal-grid-lines {
+    -fx-stroke: #b3b2b2;
+    -fx-stroke-width: 1px;
+}
+
+
+
 

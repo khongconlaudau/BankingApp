@@ -20,8 +20,8 @@ import javafx.stage.Stage;
 import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
 import java.util.Random;
 @Component
 public class RegisterController {
@@ -233,6 +233,7 @@ public class RegisterController {
         user.setPhoneNumber(Long.parseLong(getPhoneNumber()));
         user.setPin(Integer.parseInt(getPin()));
         user.setGmail(getGmail());
+        user.setCreatedDate(LocalDate.now());
         return user;
     }
 
