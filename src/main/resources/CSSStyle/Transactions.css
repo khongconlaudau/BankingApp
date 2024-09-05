@@ -1,0 +1,135 @@
+
+/*
+    The container that contains all component (Main Container)
+ */
+.anchorPaneMain{
+    -fx-background-color: rgba(218, 216, 216, 0.7);
+    -fx-pref-width: 1200;
+    -fx-pref-height: 750;
+}
+
+
+.sideMenu{
+    -fx-background-color: #00c2fd;
+    -fx-pref-width: 150;
+    -fx-pref-height: 750;
+}
+
+.scrollPane{
+    -fx-background-color: rgba(228, 227, 227, 0.7);
+    -fx-pref-width: 1100;
+    -fx-pref-height: 623;
+    -fx-border-style: none;
+}
+
+
+/*
+contents of the scroll pane
+ */
+.vbox{
+
+    -fx-background-color: rgba(228, 227, 227, 0.7);
+    -fx-pref-width: 1100;
+    -fx-pref-height: 623;
+    -fx-spacing: 10;
+
+}
+    /*
+    All of the thing is component of the Vbox inside Scroll Pane.
+    Expression for each transaction of the users
+     */
+
+.hbox{
+    -fx-background-color: white;
+    -fx-pref-width: 623;
+    -fx-pref-height: 70;
+    -fx-background-insets: 8.5,2;
+    -fx-background-radius: 15;
+    -fx-padding: 15px 20px ;
+    -fx-spacing: 50;
+
+}
+
+    /*
+    if red arrow will be the money be sent
+    if green arrow will be the money received
+     */
+.arrowBox{
+    -fx-pref-width: 70;
+    -fx-pref-height: 70;
+    -fx-spacing: 8;
+    -fx-padding: 7px 0 0 20px;
+    -fx-font-size: 12;
+}
+
+.defaultArrow{
+    -fx-scale-x: 1.5;
+    -fx-scale-y: 1;
+    -fx-fill: #d6d5d5;
+
+}
+
+.redArrow{
+    -fx-scale-x: 1.5;
+    -fx-scale-y: 1;
+    -fx-fill: #f10707;
+
+}
+
+.greenArrow{
+    -fx-scale-x: 1.5;
+    -fx-scale-y: 1;
+    -fx-fill: #2df12d;
+
+}
+
+ /*
+ date of the transaction
+  */
+.date{
+    -fx-fill: #b8b6b6;
+    -fx-font-weight: 700;
+    -fx-font-size: 13;
+    -fx-translate-y: 12;
+    -fx-translate-x: 13;
+}
+
+/*
+    label of the receiver and sender
+ */
+.label{
+    -fx-text-fill: black;
+    -fx-font-size: 14;
+    -fx-pref-height: 42;
+    -fx-pref-width: 302;
+    -fx-padding: 12px 20px ;
+    -fx-font-family: "Arial Rounded MT Bold";
+
+}
+/*
+    line seperated between the receiver and the sender
+ */
+.line{
+    -fx-rotate: 90;
+    -fx-opacity: 0.23;
+    -fx-translate-y: 20;
+}
+
+
+.bell{
+    -fx-translate-y: 15;
+    -fx-translate-x: 35;
+}
+
+/*
+    the amount being sent or received
+ */
+
+.moneyLabel{
+    -fx-background-color: #00c2fd;
+    -fx-pref-width: 120;
+    -fx-pref-height: 100;
+    -fx-font-family: "Arial Rounded MT Bold";
+    -fx-font-size: 13 ;
+    -fx-padding: 10px 10px 13px;
+}

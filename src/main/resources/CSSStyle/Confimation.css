@@ -1,0 +1,10 @@
+.button {
+    -fx-background-color: rgb(255, 255, 255);
+    -fx-font-size: 15;
+    -fx-border-radius: 10%;
+    -fx-border-color: grey;
+}
+
+.hBox {
+    -fx-background-color: #00c4ff;
+}
