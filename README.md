@@ -6,3 +6,4 @@ add VM options: --module-path /YOURPATH/TO/JAVAFX-SDK/LIB --add-modules javafx.c
 ## Prerequisites
 - JDK 21 or higher
 - Maven
+- Intellij Ultimate Version is used for this project.
